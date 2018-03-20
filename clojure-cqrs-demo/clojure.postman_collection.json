@@ -1,0 +1,72 @@
+{
+	"info": {
+		"name": "Clojure",
+		"_postman_id": "1e59f2c8-6f4f-4ced-c3c3-3496fac267a6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "127.0.0.1:8080/query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\"type\" : \"commands/hello-world1\"},\n\t{\"type\" : \"commands/hello-world2\"}\n]"
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/command",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"command"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:8080/query copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"type\" : \"commands.hello_world_query1\"}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/query",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"query"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
