@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.loraneo.clojure</groupId>
+	<artifactId>clojure-cqrs-demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<dependencies><!-- https://mvnrepository.com/artifact/liberator/liberator -->
+		<dependency>
+			<groupId>liberator</groupId>
+			<artifactId>liberator</artifactId>
+			<version>0.15.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.clojure</groupId>
+			<artifactId>clojure</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.undertow</groupId>
+			<artifactId>undertow-core</artifactId>
+			<version>1.4.22.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.undertow</groupId>
+			<artifactId>undertow-servlet</artifactId>
+			<version>1.4.22.Final</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.clojure</groupId>
+			<artifactId>data.json</artifactId>
+			<version>0.2.6</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<sourceDirectory>src/main/clojure</sourceDirectory>
+		<testSourceDirectory>src/main/clojure</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>com.theoryinpractise</groupId>
+				<artifactId>clojure-maven-plugin</artifactId>
+				<version>1.8.1</version>
+				<extensions>true</extensions>
+				<configuration>
+					<script>src/main/clojure/api.clj</script>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>clojars</id>
+			<url>http://clojars.org/repo/</url>
+		</repository>
+	</repositories>
+</project>
