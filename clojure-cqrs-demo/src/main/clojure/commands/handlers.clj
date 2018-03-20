@@ -1,17 +1,20 @@
 (ns commands.handlers
-(:require commands.hello_world))
+  (:require commands.hello_world_command1)
+  (:require commands.hello_world_command2))
 
 
 (defn getHandlers []
-  ([commands.hello-world/canHandle]))
+  [commands.hello_world_command1/handler
+   commands.hello_world_command2/handler])
 
-(defn findHandler [type]
-  (doseq [handler (getHandlers)]
-    (prn (handler 1))))
+(defn findHandler [command]
+    (some 
+      #(if ((% :canHandle) (command "type")) %)
+      (getHandlers)))
 
 
-(defn handle [payload]
+(defn execute [payload]
   (doseq [command payload] 
-    (prn 
-      (str "Command:"  (get command type)))
-    (findHandler command)))
+    ((:handle 
+       (findHandler command))
+      payload)))

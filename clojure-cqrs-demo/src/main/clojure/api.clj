@@ -4,11 +4,11 @@
   (:require [clojure.data.json :as json]))
 
 (defn handleQuery [payload]
-  (queries/handle (json/read-str payload))
+  (queries/execute (json/read-str payload))
   )
 
 (defn handleCommand [payload]
-  (commands/handle (json/read-str payload))
+  (commands/execute (json/read-str payload))
   )
 
 (defn resolveRoute [path payload]
@@ -41,22 +41,3 @@
   (.build)  
   (.start))
 
-
-;            DeploymentInfo servletBuilder = deployment()
-;                    .setClassLoader(ServletServer.class.getClassLoader())
-;                    .setContextPath(MYAPP)
-;                    .setDeploymentName("test.war")
-;                    .addServlets(
-;                            servlet("MessageServlet", MessageServlet.class)
-;                                    .addInitParam("message", "Hello World")
-;                                    .addMapping("/*"),
-;                            servlet("MyServlet", MessageServlet.class)
-;                                    .addInitParam("message", "MyServlet")
-;                                    .addMapping("/myservlet"));
-;
-;            DeploymentManager manager = defaultContainer().addDeployment(servletBuilder);
-;            manager.deploy();
-;
-;            HttpHandler servletHandler = manager.start();
-;            PathHandler path = Handlers.path(Handlers.redirect(MYAPP))
-;                    .addPrefixPath(MYAPP, servletHandler);
