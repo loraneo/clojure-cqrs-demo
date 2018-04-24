@@ -17,4 +17,5 @@
   (doseq [command payload] 
     ((:handle 
        (findHandler command))
-      payload)))
+      payload))
+  "Hello")

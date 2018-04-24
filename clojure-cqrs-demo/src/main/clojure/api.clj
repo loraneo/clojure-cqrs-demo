@@ -12,32 +12,31 @@
   )
 
 (defn resolveRoute [path payload]
-  (cond 
+  (cond
     (.startsWith path "/command") (handleCommand payload)
     (.startsWith path "/query") (handleQuery payload)
     )
   )
 (defn handlePostRequest [exchange]
   (.startBlocking exchange)
-  (resolveRoute
-    (.getRequestURI exchange)
-    (with-open [out-data (.getInputStream exchange)]
-      (slurp out-data)))
-  (.send 
-    (.getResponseSender exchange) 
-    "Hello world"))
+  (.send
+    (.getResponseSender exchange)
+    (resolveRoute
+      (.getRequestURI exchange)
+      (with-open [out-data (.getInputStream exchange)]
+        (slurp out-data)))))
 
-(def createHandler 
+(def createHandler
   (reify io.undertow.server.HttpHandler
     (handleRequest [this exchange]
-      (if (.isInIoThread exchange) (.dispatch exchange this) 
-        (handlePostRequest exchange)))))
+      (if (.isInIoThread exchange) (.dispatch exchange this)
+                                   (handlePostRequest exchange)))))
 
-(def createCommandHandler 
-  (io.undertow.Handlers/path) )
+(def createCommandHandler
+  (io.undertow.Handlers/path))
 (-> (io.undertow.Undertow/builder)
-  (.addHttpListener 8080, "localhost")
-  (.setHandler createHandler)
-  (.build)  
-  (.start))
+    (.addHttpListener 8080, "localhost")
+    (.setHandler createHandler)
+    (.build)
+    (.start))
 

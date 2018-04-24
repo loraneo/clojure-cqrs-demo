@@ -1,8 +1,8 @@
 (ns queries.hello_world_query2)
 
 (defn canHandle [type]
-  (if 
-    (compare "commands.hello_world_query2" type) true false))
+  (if (=
+        (compare "commands.hello_world_query2" type) 0) true false))
 
 (defn handle [command]
   "Query response 2")

@@ -13,6 +13,6 @@
 
 
 (defn execute [payload]
-  ((:handle 
+  ((:handle
        (findHandler payload))
       payload))
